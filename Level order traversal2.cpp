@@ -14,18 +14,22 @@ struct Node
     }
 };
 
-void distanceK(Node *root, int k)
+void LOT(Node *root)
 {
+    queue<Node *> q;
     if (root == NULL)
         return;
 
-    if (k == 0)
-        cout << root->value << " ";
-
-    else
+    q.push(root);
+    while (q.empty() == false)
     {
-        distanceK(root->left, k - 1);
-        distanceK(root->right, k - 1);
+        Node *curr = q.front();
+        q.pop();
+        cout << curr->value << " ";
+        if (curr->left != NULL)
+            q.push(curr->left);
+        if (curr->right != NULL)
+            q.push(curr->right);
     }
 }
 
@@ -38,6 +42,6 @@ int main()
     root->right->left = new Node(40);
     root->right->right = new Node(50);
 
-    distanceK(root, 2);
+    LOT(root);
     return 0;
 }
