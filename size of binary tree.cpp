@@ -13,12 +13,12 @@ struct Node
     }
 };
 
-int maximum(Node *root)
+int size(Node *root)
 {
     if (root == NULL)
         return 0;
 
-    return max(root->value, max(root->left->value, root->right->value));
+    return (size(root->left) + 1 + size(root->right));
 }
 
 int main()
@@ -30,6 +30,6 @@ int main()
     root->right->left = new Node(40);
     root->right->right = new Node(50);
 
-    cout << maximum(root);
+    cout << size(root);
     return 0;
 }
